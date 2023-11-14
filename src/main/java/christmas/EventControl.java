@@ -5,14 +5,14 @@ import static java.lang.Integer.parseInt;
 import camp.nextstep.edu.missionutils.Console;
 
 public class EventControl {
-
-
     EventControl() {
         EventView.firstScreen();
         EventModel.setDate(inputDate());
 
         inputMenu();
         EventView.printOrderedMenu();
+        EventModel.calculateOrderPrice();
+        EventView.printOrderPrice();
     }
 
     public int inputDate() {

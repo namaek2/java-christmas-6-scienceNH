@@ -55,4 +55,10 @@ public class EventModel {
     public static int getOrderPrice() {
         return orderPrice;
     }
+
+    public static void calculateOrderPrice() {
+        for (String[] menu : orderedMenu) {
+            orderPrice += containingEnum(menu[0]).getPrice() * parseInt(menu[1]);
+        }
+    }
 }

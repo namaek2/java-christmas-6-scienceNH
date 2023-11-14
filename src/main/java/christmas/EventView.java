@@ -1,5 +1,7 @@
 package christmas;
 
+import java.text.DecimalFormat;
+
 public class EventView {
     public static void firstScreen() {
         System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
@@ -20,5 +22,13 @@ public class EventView {
         for (String[] menu : EventModel.getOrderedMenu()) {
             System.out.println(menu[0] + " " + menu[1] + "개");
         }
+    }
+
+    public static void printOrderPrice() {
+        System.out.println("\n<할인 전 총주문 금액>");
+
+        DecimalFormat df = new DecimalFormat("###,###");
+        String money = df.format(EventModel.getOrderPrice());
+        System.out.println(money);
     }
 }
