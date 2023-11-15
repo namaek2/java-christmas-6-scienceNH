@@ -6,15 +6,15 @@ import java.util.ArrayList;
 
 public class EventModel {
     private static int date;
-    static ArrayList<String[]> orderedMenu = new ArrayList<>();
-    static int leftMenus = 20;
-    static int orderPrice = 0;
-    static int christmasDiscount = 1000;
-    static int weekDaysDiscount = 0;
-    static int specialDiscount = 0;
-    static int goodsDiscount = 0;
-    static boolean isWeekEnds = false;
-    static int discounts = 0;
+    private static ArrayList<String[]> orderedMenu = new ArrayList<>();
+    private static int leftMenus = 20;
+    private static int orderPrice = 0;
+    private static int christmasDiscount = 1000;
+    private static int weekDaysDiscount = 0;
+    private static int specialDiscount = 0;
+    private static int goodsDiscount = 0;
+    private static boolean isWeekEnds = false;
+    private static int discounts = 0;
 
     public static void setOrderedMenu(String[] menuInfo) {
         orderedMenu.add(menuInfo);
@@ -34,21 +34,42 @@ public class EventModel {
         return date;
     }
 
+    public static void setOrderPrice(int num) {
+        orderPrice = num;
+    }
+
     public static int getOrderPrice() {
         return orderPrice;
+    }
+
+    public static void setChristmasDiscount(int num) {
+        christmasDiscount = num;
     }
 
     public static int getChristmasDiscount() {
         return christmasDiscount;
     }
 
+    public static void setWeekDaysDiscount(int num) {
+        weekDaysDiscount = num;
+    }
+
     public static int getWeekDaysDiscount() {
         return weekDaysDiscount;
+    }
+
+    public static void setIsWeekEnds(boolean bool) {
+        isWeekEnds = bool;
+    }
+
+    public static void setSpecialDiscount(int num) {
+        specialDiscount = num;
     }
 
     public static int getSpecialDiscount() {
         return specialDiscount;
     }
+
 
     public static int getGoodsDiscount() {
         return goodsDiscount;
@@ -56,6 +77,10 @@ public class EventModel {
 
     public static boolean getIsWeekEnds() {
         return isWeekEnds;
+    }
+
+    public static void setDiscounts(int num) {
+        discounts = num;
     }
 
     public static int getDiscounts() {

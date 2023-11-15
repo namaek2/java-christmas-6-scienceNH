@@ -10,14 +10,14 @@ import org.junit.jupiter.api.Test;
 
 class EnumTest extends NsTest {
     @Test
-    void EventEnumMenu에서_메뉴_찾기_테스트() {
+    void EventEnumMenu에서_containingEnum_테스트() {
         assertSimpleTest(() -> {
             assertThat(containingEnum("시저샐러드")).isEqualTo(EventEnumMenus.SALAD);
         });
     }
 
     @Test
-    void EventEnumBadges에서_무슨_뱃지_테스트() {
+    void EventEnumBadges에서_whichBadge_테스트() {
         assertSimpleTest(() -> {
             assertThat(whichBadge(18000)).isEqualTo("트리");
         });

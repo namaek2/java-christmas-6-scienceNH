@@ -4,6 +4,8 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static christmas.EventModel.calculateOrderPrice;
 import static christmas.EventModel.getOrderPrice;
 import static christmas.EventModel.isShampaignEvent;
+import static christmas.EventModel.setOrderPrice;
+import static christmas.EventModel.setOrderedMenu;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
@@ -22,8 +24,9 @@ class ModelTest extends NsTest {
     }
 
     @Test
-    void EventEnumBadges에서_무슨_뱃지_테스트() {
+    void 총_주문_가격_테스트() {
         assertSimpleTest(() -> {
+            setOrderPrice(0);
             ArrayList<String[]> menus = new ArrayList<>();
             menus.add(new String[]{"크리스마스파스타", "2"});
             menus.add(new String[]{"샴페인", "1"});
