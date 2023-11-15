@@ -18,10 +18,6 @@ public enum EventEnumCategories {
         this.menus = menus;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
     public List<EventEnumMenus> getMenus() {
         return menus;
     }

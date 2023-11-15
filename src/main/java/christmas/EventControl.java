@@ -8,7 +8,6 @@ public class EventControl {
     EventControl() {
         EventView.firstScreen();
         EventModel.setDate(inputDate());
-
         inputMenu();
         EventView.printOrderedMenu();
         EventModel.calculateOrderPrice();

@@ -1,9 +1,5 @@
 package christmas;
 
-;
-import java.util.Arrays;
-import java.util.List;
-
 enum EventEnumMenus {
     SOUP("양송이수프", 6000),
     TAPAS("타파스", 5500),
