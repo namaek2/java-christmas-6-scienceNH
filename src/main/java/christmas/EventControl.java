@@ -13,6 +13,7 @@ public class EventControl {
         EventView.printOrderedMenu();
         EventModel.calculateOrderPrice();
         EventView.printOrderPrice();
+        EventModel.shampaignEvent(EventModel.getOrderPrice());
     }
 
     public int inputDate() {

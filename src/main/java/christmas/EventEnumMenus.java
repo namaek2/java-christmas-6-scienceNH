@@ -16,7 +16,7 @@ enum EventEnumMenus {
     ICECREAM("아이스크림", 5000),
     COKE("제로콜라", 3000),
     WINE("레드와인", 60000),
-    SHAMPAIN("샴페인", 25000);
+    SHAMPAIGN("샴페인", 25000);
 
     private final String name;
     private final int price;

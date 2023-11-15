@@ -8,7 +8,7 @@ public enum EventEnumCategories {
     MAIN("메인", Arrays.asList(EventEnumMenus.STAKE, EventEnumMenus.RIB, EventEnumMenus.SEAPASTA,
             EventEnumMenus.CHIRSTPASTA)),
     DESSERT("디저트", Arrays.asList(EventEnumMenus.CAKE, EventEnumMenus.ICECREAM)),
-    DRINK("음료", Arrays.asList(EventEnumMenus.COKE, EventEnumMenus.WINE, EventEnumMenus.SHAMPAIN));
+    DRINK("음료", Arrays.asList(EventEnumMenus.COKE, EventEnumMenus.WINE, EventEnumMenus.SHAMPAIGN));
 
     private String title;
     private List<EventEnumMenus> menus;

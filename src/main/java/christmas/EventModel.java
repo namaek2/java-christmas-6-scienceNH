@@ -9,22 +9,7 @@ public class EventModel {
     static ArrayList<String[]> orderedMenu = new ArrayList<>();
     static int leftMenus = 20;
     static int orderPrice = 0;
-
-
-    public static EventEnumMenus containingEnum(String menu) {
-        for (EventEnumMenus eventEnumMenus : EventEnumMenus.values()) {
-            if (eventEnumMenus.getName().equals(menu)) {
-                return eventEnumMenus;
-            }
-        }
-
-        return null;
-    }
-
-    public static void eraseOrderedMenu() {
-        orderedMenu.clear();
-        leftMenus = 20;
-    }
+    static String goodsDiscount;
 
     public static void setOrderedMenu(String[] menuInfo) {
         orderedMenu.add(menuInfo);
@@ -48,17 +33,39 @@ public class EventModel {
         return date;
     }
 
-    public static void setOrderPrice(int num) {
-        orderPrice = num;
-    }
-
     public static int getOrderPrice() {
         return orderPrice;
+    }
+
+    public static EventEnumMenus containingEnum(String menu) {
+        for (EventEnumMenus eventEnumMenus : EventEnumMenus.values()) {
+            if (eventEnumMenus.getName().equals(menu)) {
+                return eventEnumMenus;
+            }
+        }
+
+        return null;
+    }
+
+    public static void eraseOrderedMenu() {
+        orderedMenu.clear();
+        leftMenus = 20;
     }
 
     public static void calculateOrderPrice() {
         for (String[] menu : orderedMenu) {
             orderPrice += containingEnum(menu[0]).getPrice() * parseInt(menu[1]);
         }
+    }
+
+    public static boolean shampaignEvent(int orderPrice) {
+        if (orderPrice >= 120000) {
+            EventView.printShampaignEvent(true);
+            goodsDiscount = "-25000";
+            return true;
+        }
+        EventView.printShampaignEvent(false);
+        goodsDiscount = "없음";
+        return false;
     }
 }

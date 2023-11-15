@@ -31,4 +31,13 @@ public class EventView {
         String money = df.format(EventModel.getOrderPrice());
         System.out.println(money);
     }
+
+    public static void printShampaignEvent(boolean isShampaignEvent) {
+        System.out.println("<증정 메뉴>");
+        if (isShampaignEvent) {
+            System.out.println("샴페인 1개");
+            return;
+        }
+        System.out.println("없음");
+    }
 }
