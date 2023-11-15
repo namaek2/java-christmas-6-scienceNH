@@ -30,5 +30,13 @@ enum EventEnumMenus {
         return price;
     }
 
+    public static EventEnumMenus containingEnum(String menu) {
+        for (EventEnumMenus eventEnumMenus : EventEnumMenus.values()) {
+            if (eventEnumMenus.getName().equals(menu)) {
+                return eventEnumMenus;
+            }
+        }
 
+        return null;
+    }
 }

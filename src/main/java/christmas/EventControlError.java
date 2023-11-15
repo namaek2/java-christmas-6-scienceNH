@@ -76,7 +76,7 @@ public class EventControlError {
     }
 
     private static void checkMenuNameError(String menu) {
-        if (EventModel.containingEnum(menu) == null) {
+        if (EventEnumMenus.containingEnum(menu) == null) {
             System.out.println("[ERROR] 입력한 메뉴는 존재하지 않습니다.");
             throw new IllegalArgumentException("[ERROR] 입력한 메뉴는 존재하지 않습니다.");
         }
@@ -102,7 +102,7 @@ public class EventControlError {
         EventEnumCategories category = EventEnumCategories.DRINK;
 
         for (String[] menu : menus) {
-            EventEnumMenus tempName = EventModel.containingEnum(menu[0]);
+            EventEnumMenus tempName = EventEnumMenus.containingEnum(menu[0]);
             if (!category.getMenus().contains(tempName)) {
                 return false;
             }
