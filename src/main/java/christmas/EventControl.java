@@ -9,11 +9,8 @@ public class EventControl {
         EventView.firstScreen();
         inputDate();
         inputMenu();
-        EventView.printOrderedMenu();
-        EventModel.calculateOrderPrice();
-        EventView.printOrderPrice();
+        controlOrderedPrice();
         controlShampaignEvent();
-        new EventCalculateDiscounts();
         controlDiscounts();
         EventView.printFinalFee();
         controlBadge();
@@ -48,6 +45,8 @@ public class EventControl {
             EventView.tryAgainMessage();
             menu = Console.readLine();
         }
+
+        EventView.printOrderedMenu();
     }
 
     private boolean catchMenuError(String menu) {
@@ -59,12 +58,18 @@ public class EventControl {
         }
     }
 
+    public void controlOrderedPrice() {
+        EventModel.calculateOrderPrice();
+        EventView.printOrderPrice();
+    }
+
     public void controlShampaignEvent() {
         boolean isShampaignTrue = EventModel.isShampaignEvent(EventModel.getOrderPrice());
         EventView.printShampaignEvent(isShampaignTrue);
     }
 
     public void controlDiscounts() {
+        new EventCalculateDiscounts();
         EventView.printDiscounts(EventModel.getDiscounts());
         EventView.printTotalDiscounts();
     }
