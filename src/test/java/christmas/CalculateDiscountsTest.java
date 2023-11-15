@@ -16,8 +16,6 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 class CalculateDiscountsTest extends NsTest {
-    private static final String LINE_SEPARATOR = System.lineSeparator();
-
     @Test
     void 이벤트_조건_부합_테스트() {
         assertThat(checkEventAvailable(12000)).isTrue();
