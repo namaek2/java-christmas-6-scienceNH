@@ -107,4 +107,9 @@ public class EventView {
                 EventModel.getOrderPrice() - EventModel.getDiscounts() + EventModel.getGoodsDiscount());
         System.out.println(money + "원");
     }
+
+    public static void printBadge(String badge) {
+        System.out.println("\n<12월 이벤트 배지>");
+        System.out.println(badge);
+    }
 }

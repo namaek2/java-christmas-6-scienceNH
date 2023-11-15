@@ -18,6 +18,7 @@ public class EventControl {
         EventView.printDiscounts(EventModel.getDiscounts());
         EventView.printTotalDiscounts();
         EventView.printFinalFee();
+        EventView.printBadge(EventModel.calculateBadges(EventModel.getDiscounts()));
     }
 
     public int inputDate() {

@@ -143,4 +143,13 @@ public class EventModel {
             specialDiscount += 1000;
         }
     }
+
+    public static String calculateBadges(int discounts) {
+        for (EventEnumBadges eventEnumBadge : EventEnumBadges.values()) {
+            if (eventEnumBadge.getPrice() <= discounts) {
+                return eventEnumBadge.getName();
+            }
+        }
+        return ("없음");
+    }
 }
