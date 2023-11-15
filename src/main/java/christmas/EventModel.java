@@ -80,8 +80,8 @@ public class EventModel {
         return false;
     }
 
-    public static void calculateOrderPrice() {
-        for (String[] menu : orderedMenu) {
+    public static void calculateOrderPrice(ArrayList<String[]> menus) {
+        for (String[] menu : menus) {
             orderPrice += EventEnumMenus.containingEnum(menu[0]).getPrice() * parseInt(menu[1]);
         }
     }

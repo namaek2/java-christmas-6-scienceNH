@@ -59,7 +59,7 @@ public class EventControl {
     }
 
     public void controlOrderedPrice() {
-        EventModel.calculateOrderPrice();
+        EventModel.calculateOrderPrice(EventModel.getOrderedMenu());
         EventView.printOrderPrice();
     }
 
