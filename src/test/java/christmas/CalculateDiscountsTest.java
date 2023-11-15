@@ -7,7 +7,9 @@ import static christmas.EventCalculateDiscounts.checkEventAvailable;
 import static christmas.EventCalculateDiscounts.isWeekEndsDiscount;
 import static christmas.EventModel.christmasDiscount;
 import static christmas.EventModel.getChristmasDiscount;
+import static christmas.EventModel.getSpecialDiscount;
 import static christmas.EventModel.getWeekDaysDiscount;
+import static christmas.EventModel.specialDiscount;
 import static christmas.EventModel.weekDaysDiscount;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,6 +27,7 @@ class CalculateDiscountsTest extends NsTest {
     @Test
     void 크리스마스_디데이_혜택_테스트() {
         assertSimpleTest(() -> {
+            christmasDiscount = 1000;
             calculateChristmasDiscount(25);
             assertThat(getChristmasDiscount()).isEqualTo(3400);
             christmasDiscount = 1000;
@@ -39,6 +42,7 @@ class CalculateDiscountsTest extends NsTest {
             ArrayList<String[]> menus = new ArrayList<>();
             menus.add(new String[]{"초코케이크", "2"});
             menus.add(new String[]{"티본스테이크", "1"});
+            weekDaysDiscount = 0;
             isWeekEndsDiscount(1, menus);
             assertThat(getWeekDaysDiscount()).isEqualTo(2023);
             weekDaysDiscount = 0;
@@ -50,8 +54,9 @@ class CalculateDiscountsTest extends NsTest {
     @Test
     void 특별_혜택_테스트() {
         assertSimpleTest(() -> {
+            specialDiscount = 0;
             calculateSpecialDiscount(24);
-            assertThat(getChristmasDiscount()).isEqualTo(1000);
+            assertThat(getSpecialDiscount()).isEqualTo(1000);
         });
     }
 
