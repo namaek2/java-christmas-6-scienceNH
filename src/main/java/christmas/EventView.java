@@ -33,11 +33,78 @@ public class EventView {
     }
 
     public static void printShampaignEvent(boolean isShampaignEvent) {
-        System.out.println("<증정 메뉴>");
+        System.out.println("\n<증정 메뉴>");
         if (isShampaignEvent) {
             System.out.println("샴페인 1개");
             return;
         }
         System.out.println("없음");
+    }
+
+    public static void printDiscounts(int discounts) {
+        System.out.println("\n<혜택 내역>");
+
+        if (discounts != 0) {
+            printChristmasDiscounts();
+            printWeekdaysDiscounts();
+            printSpecialDiscounts();
+            printGoodsDiscounts();
+            return;
+        }
+        System.out.println("없음");
+    }
+
+    private static void printChristmasDiscounts() {
+        if (EventModel.getChristmasDiscount() != 0) {
+            DecimalFormat df = new DecimalFormat("###,###");
+            String money = df.format(EventModel.getChristmasDiscount());
+            System.out.println("크리스마스 디데이 할인: -" + money + "원");
+        }
+    }
+
+    private static void printWeekdaysDiscounts() {
+        if (EventModel.getWeekDaysDiscount() != 0) {
+            DecimalFormat df = new DecimalFormat("###,###");
+            String money = df.format(EventModel.getWeekDaysDiscount());
+            if (EventModel.getIsWeekEnds()) {
+                System.out.println("주말 할인: -" + money + "원");
+                return;
+            }
+            System.out.println("평일 할인: -" + money + "원");
+        }
+    }
+
+    private static void printSpecialDiscounts() {
+        if (EventModel.getSpecialDiscount() != 0) {
+            DecimalFormat df = new DecimalFormat("###,###");
+            String money = df.format(EventModel.getSpecialDiscount());
+            System.out.println("특별 할인: -" + money + "원");
+        }
+    }
+
+    private static void printGoodsDiscounts() {
+        if (EventModel.getGoodsDiscount() != 0) {
+            DecimalFormat df = new DecimalFormat("###,###");
+            String money = df.format(EventModel.getGoodsDiscount());
+            System.out.println("증정 이벤트: -" + money + "원");
+        }
+    }
+
+    public static void printTotalDiscounts() {
+        System.out.println("\n<총혜택 금액>");
+        DecimalFormat df = new DecimalFormat("###,###");
+        String money = df.format(EventModel.getDiscounts());
+        if (EventModel.getDiscounts() != 0) {
+            System.out.print("-");
+        }
+        System.out.println(money + "원");
+    }
+
+    public static void printFinalFee() {
+        System.out.println("\n<할인 후 예상 결제 금액>");
+        DecimalFormat df = new DecimalFormat("###,###");
+        String money = df.format(
+                EventModel.getOrderPrice() - EventModel.getDiscounts() + EventModel.getGoodsDiscount());
+        System.out.println(money + "원");
     }
 }

@@ -14,6 +14,10 @@ public class EventControl {
         EventModel.calculateOrderPrice();
         EventView.printOrderPrice();
         EventModel.shampaignEvent(EventModel.getOrderPrice());
+        EventModel.caculateDiscounts();
+        EventView.printDiscounts(EventModel.getDiscounts());
+        EventView.printTotalDiscounts();
+        EventView.printFinalFee();
     }
 
     public int inputDate() {
