@@ -21,9 +21,6 @@ public class EventModel {
         leftMenus -= parseInt(menuInfo[1]);
     }
 
-    public static ArrayList<String[]> getOrderedMenu() {
-        return orderedMenu;
-    }
 
     public static int getLeftMenus() {
         return leftMenus;
@@ -68,6 +65,10 @@ public class EventModel {
     public static void eraseOrderedMenu() {
         orderedMenu.clear();
         leftMenus = 20;
+    }
+
+    public static ArrayList<String[]> getOrderedMenu() {
+        return orderedMenu;
     }
 
     public static boolean isShampaignEvent(int orderPrice) {
