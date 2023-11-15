@@ -7,8 +7,8 @@ import java.util.ArrayList;
 public class EventControlError {
     public static void checkDateError(String date) {
         if (!date.chars().allMatch(Character::isDigit)) {
-            System.out.println("[ERROR] 입력한 날짜는 양수의 정수여야 합니다.");
-            throw new IllegalArgumentException("[ERROR] 입력한 날짜는 양수의 정수여야 합니다.");
+            System.out.println("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
         } else if (parseInt(date) < 1 || parseInt(date) > 31) {
             System.out.println("[ERROR] 입력한 날짜는 1 이상 31 이하의 양수여야 합니다.");
             throw new IllegalArgumentException("[ERROR] 입력한 날짜는 1 이상 31 이하의 양수여야 합니다.");
@@ -18,9 +18,19 @@ public class EventControlError {
     public static void checkMenuError(String menu) {
         if (isOneMenu(menu)) {
             checkOneMenuErrors(menu);
+            onlyDrinksError(EventModel.getOrderedMenu());
             return;
         }
         checkManyMenuErrors(menu);
+    }
+
+    private static boolean isOneMenu(String menu) {
+        for (int i = 0; i < menu.length(); i++) {
+            if (menu.charAt(i) == ',') {
+                return false;
+            }
+        }
+        return true;
     }
 
     private static void checkOneMenuErrors(String oneMenu) {
@@ -29,43 +39,32 @@ public class EventControlError {
         checkMenuNameError(menuInfo[0]);
         checkMenuCountError(menuInfo[1]);
         checkMenuDuplicateError(menuInfo[0]);
+        
         EventModel.setOrderedMenu(menuInfo);
-        onlyDrinksError(EventModel.getOrderedMenu());
     }
 
     private static void checkManyMenuErrors(String menu) {
         String[] menus = menu.split(",");
         for (String oneMenu : menus) {
-            checkMenuFormError(oneMenu);
-            String[] menuInfo = oneMenu.split("-");
-            checkMenuNameError(menuInfo[0]);
-            checkMenuCountError(menuInfo[1]);
-            checkMenuDuplicateError(menuInfo[0]);
-            EventModel.setOrderedMenu(menuInfo);
+            checkOneMenuErrors(oneMenu);
         }
         onlyDrinksError(EventModel.getOrderedMenu());
     }
 
     private static void checkMenuFormError(String menu) {
-        boolean found = false;
-
         for (int i = 0; i < menu.length(); i++) {
             if (menu.charAt(i) == '-') {
-                found = true;
-                break;
+                return;
             }
         }
-
-        if (!found) {
-            System.out.println("[ERROR] 입력한 메뉴의 형식이 잘못되었습니다.");
-            throw new IllegalArgumentException("[ERROR] 입력한 메뉴의 형식이 잘못되었습니다.");
-        }
+        System.out.println("[ERROR] 입력한 메뉴의 형식이 잘못되었습니다.");
+        throw new IllegalArgumentException("[ERROR] 입력한 메뉴의 형식이 잘못되었습니다.");
     }
 
     private static void checkMenuCountError(String menu) {
         if (!menu.chars().allMatch(Character::isDigit)) {
-            System.out.println("[ERROR] 입력한 메뉴의 개수는 양수의 정수여야 합니다.");
-            throw new IllegalArgumentException("[ERROR] 입력한 메뉴의 개수는 양수의 정수여야 합니다.");
+            System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException("유효하지 않은 주문입니다. 다시 입력해 주세요.");
         } else if (parseInt(menu) < 1) {
             System.out.println("[ERROR] 입력한 메뉴의 개수는 1 이상의 양수여야 합니다.");
             throw new IllegalArgumentException("[ERROR] 입력한 메뉴의 개수는 1 이상의 양수여야 합니다.");
@@ -100,19 +99,9 @@ public class EventControlError {
 
     private static boolean isOnlyDrinks(ArrayList<String[]> menus) {
         EventEnumCategories category = EventEnumCategories.DRINK;
-
         for (String[] menu : menus) {
             EventEnumMenus tempName = EventEnumMenus.containingEnum(menu[0]);
             if (!category.getMenus().contains(tempName)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private static boolean isOneMenu(String menu) {
-        for (int i = 0; i < menu.length(); i++) {
-            if (menu.charAt(i) == ',') {
                 return false;
             }
         }

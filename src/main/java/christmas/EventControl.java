@@ -7,20 +7,19 @@ import camp.nextstep.edu.missionutils.Console;
 public class EventControl {
     EventControl() {
         EventView.firstScreen();
-        EventModel.setDate(inputDate());
+        inputDate();
         inputMenu();
         EventView.printOrderedMenu();
         EventModel.calculateOrderPrice();
         EventView.printOrderPrice();
-        EventModel.shampaignEvent(EventModel.getOrderPrice());
+        controlShampaignEvent();
         new EventCalculateDiscounts();
-        EventView.printDiscounts(EventModel.getDiscounts());
-        EventView.printTotalDiscounts();
+        controlDiscounts();
         EventView.printFinalFee();
-        EventView.printBadge(EventModel.calculateBadges(EventModel.getDiscounts()));
+        controlBadge();
     }
 
-    public int inputDate() {
+    public void inputDate() {
         String date = Console.readLine();
 
         while (catchDateError(date)) {
@@ -28,10 +27,10 @@ public class EventControl {
             date = Console.readLine();
         }
 
-        return parseInt(date);
+        EventModel.setDate(parseInt(date));
     }
 
-    public boolean catchDateError(String date) {
+    private boolean catchDateError(String date) {
         try {
             EventControlError.checkDateError(date);
             return false;
@@ -51,12 +50,27 @@ public class EventControl {
         }
     }
 
-    public boolean catchMenuError(String menu) {
+    private boolean catchMenuError(String menu) {
         try {
             EventControlError.checkMenuError(menu);
             return false;
         } catch (IllegalArgumentException e) {
             return true;
         }
+    }
+
+    public void controlShampaignEvent() {
+        boolean isShampaignTrue = EventModel.isShampaignEvent(EventModel.getOrderPrice());
+        EventView.printShampaignEvent(isShampaignTrue);
+    }
+
+    public void controlDiscounts() {
+        EventView.printDiscounts(EventModel.getDiscounts());
+        EventView.printTotalDiscounts();
+    }
+
+    public void controlBadge() {
+        String badge = EventEnumBadges.whichBadge(EventModel.getDiscounts());
+        EventView.printBadge(badge);
     }
 }

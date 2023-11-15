@@ -28,7 +28,7 @@ public class EventModel {
     public static int getLeftMenus() {
         return leftMenus;
     }
-    
+
     public static void setDate(int num) {
         date = num;
     }
@@ -70,27 +70,18 @@ public class EventModel {
         leftMenus = 20;
     }
 
-    public static void shampaignEvent(int orderPrice) {
+    public static boolean isShampaignEvent(int orderPrice) {
         if (orderPrice >= 120000) {
             EventView.printShampaignEvent(true);
             goodsDiscount = 25000;
-            return;
+            return true;
         }
-        EventView.printShampaignEvent(false);
+        return false;
     }
 
     public static void calculateOrderPrice() {
         for (String[] menu : orderedMenu) {
             orderPrice += EventEnumMenus.containingEnum(menu[0]).getPrice() * parseInt(menu[1]);
         }
-    }
-
-    public static String calculateBadges(int discounts) {
-        for (EventEnumBadges eventEnumBadge : EventEnumBadges.values()) {
-            if (eventEnumBadge.getPrice() <= discounts) {
-                return eventEnumBadge.getName();
-            }
-        }
-        return ("없음");
     }
 }

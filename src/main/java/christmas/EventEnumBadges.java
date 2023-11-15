@@ -21,4 +21,13 @@ public enum EventEnumBadges {
     public int getPrice() {
         return PRICE;
     }
+
+    public static String whichBadge(int discounts) {
+        for (EventEnumBadges eventEnumBadge : EventEnumBadges.values()) {
+            if (eventEnumBadge.getPrice() <= discounts) {
+                return eventEnumBadge.getName();
+            }
+        }
+        return ("없음");
+    }
 }

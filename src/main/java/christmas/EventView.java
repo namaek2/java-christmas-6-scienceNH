@@ -29,7 +29,7 @@ public class EventView {
 
         DecimalFormat df = new DecimalFormat("###,###");
         String money = df.format(EventModel.getOrderPrice());
-        System.out.println(money);
+        System.out.println(money + "원");
     }
 
     public static void printShampaignEvent(boolean isShampaignEvent) {
